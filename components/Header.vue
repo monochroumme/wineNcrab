@@ -7,8 +7,8 @@
           <li class="header-nav-list-item" :class="{ active : activeIndex == 3 }"><a href="/menu" @click.prevent="$bus.goTo('/menu', $router)">{{ $t('header.nav-item-3') }}</a></li>
           <li class="header-nav-list-item" :class="{ active : activeIndex == 4 }"><a href="/contacts" @click.prevent="$bus.goTo('/contacts', $router)">{{ $t('header.nav-item-4') }}</a></li>
         </ul>
-        <button class="header-nav-change-language" @click="$i18n.locale == 'ru' ? $i18n.locale = 'cn' : $i18n.locale = 'ru'">
-          <img src="~/static/svg/change-language.svg" :alt="$t('header.nav-change-language')">
+        <button class="change-language" @click="$i18n.locale == 'ru' ? $i18n.locale = 'cn' : $i18n.locale = 'ru'">
+          <img src="~/static/svg/change-language.svg" :alt="$t('change-language')">
         </button>
       </nav>
     </header>

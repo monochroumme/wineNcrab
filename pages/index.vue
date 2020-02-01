@@ -5,7 +5,7 @@
       <img class="main-page-welcome-logo" src="~/static/svg/logo.svg">
       <div class="main-page-welcome-text-area">
         <div class="main-page-welcome-text-bg"><span>{{ $t('main-page.welcome.title') }}</span></div>
-        <div class="main-page-welcome-text-bg"><span v-html="getWelcomeSubtitle"></span></div>
+        <div class="main-page-welcome-text-bg"><span v-html="getEditedPurpleText('main-page.welcome.subtitle', 0)"></span></div>
       </div>
       <span class="main-page-welcome-text-bottom">{{ $t('main-page.welcome.bottom-text') }}</span>
     </section>
@@ -66,15 +66,124 @@
         <img class="main-page-section-4-crab" src="~/static/pics/Crab-PNG.png">
       </div>
     </section>
+    <section class="main-page-section-5">
+      <h3 class="main-page-section-5-title" v-html="getEditedPurpleText('main-page.section.5.title', 1)"></h3>
+      <div class="main-page-section-5-top">
+        <div class="main-page-section-5-top-right">
+          <div class="main-page-section-5-download-link">
+            <a :href="$t('main-page.section.5.download.link')" target="_blank">{{ $t('main-page.section.5.download.text') }}</a>
+          </div>
+          <div class="main-page-section-5-top-text-wrapper">
+            <p>{{ $t('main-page.section.5.text.top') }}</p>
+          </div>
+        </div>
+        <div class="main-page-section-5-top-left"></div>
+      </div>
+      <div class="main-page-section-5-bottom-text-wrapper">
+        <p>{{ $t('main-page.section.5.text.bottom') }}</p>
+      </div>
+    </section>
+    <section class="main-page-section-6">
+      <div class="main-page-section-6-inner">
+        <p v-for="p in $t('main-page.section.6').length" :class="{ 'main-page-section-6-bold' : p == $t('main-page.section.6').length }">
+          <span v-for="line in $t('main-page.section.6')[p-1]">{{ line }}</span>
+        </p>
+      </div>
+    </section>
+    <section class="main-page-section-7">
+      <div class="main-page-section-7-inner">
+        <div class="main-page-section-7-left">
+          <h3 class="main-page-section-7-title">
+            <span v-for="line in $t('main-page.section.7.title')">{{ line }}</span>
+          </h3>
+          <img src="~/static/pics/IROD5874.jpg">
+        </div>
+        <div class="main-page-section-7-right">
+          <img src="~/static/pics/IMG_0037.jpg">
+        </div>
+      </div>
+    </section>
+    <section class="main-page-section-8">
+      <h3 class="main-page-section-8-title">{{ $t('main-page.section.8.title') }}</h3>
+      <div class="main-page-slider">
+        <div v-swiper:mySwiper="swiperOption">
+          <div class="swiper-wrapper">
+            <img v-for="(slide, i) in section8Pics" :src="slide" :key="i" class="swiper-slide" />
+          </div>
+          <button class="main-page-slider-arrow-left" @click="mySwiper.slidePrev()">
+            <img src="~/static/svg/arrow-left.svg">
+          </button>
+          <button class="main-page-slider-arrow-right" @click="mySwiper.slideNext()">
+            <img src="~/static/svg/arrow-right.svg">
+          </button>
+        </div>
+      </div>
+    </section>
+    <section-9 />
+    <section class="main-page-section-10">
+      <div class="main-page-section-10-top">
+        <h3 class="main-page-section-10-title">{{ $t('main-page.section.10.title') }}</h3>
+        <div class="main-page-section-10-top-gray-area"></div>
+      </div>
+      <div class="main-page-section-10-bottom">
+        <div class="main-page-section-10-left main-page-section-10-address-area">
+          <span v-html="$t('main-page.section.10.text.left')"></span>
+        </div>
+        <div class="main-page-section-10-address-area">
+          <span v-html="$t('main-page.section.10.text.right')"></span>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script>
+  import Vue from 'vue';
+  import Section9 from '~/components/Section9';
+
   export default {
-    computed: {
-      getWelcomeSubtitle() {
-        let html = this.$t('main-page.welcome.subtitle').split(' ');
-        html[0] = '<span class="text-purple">' + html[0] + '</span>';
+    components: {
+      'section-9': Section9
+    },
+
+    beforeMount () {
+      if (process.browser) {
+        require('swiper/dist/css/swiper.css');
+        const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr');
+        Vue.use(VueAwesomeSwiper);
+      }
+    },
+
+    data() {
+      return {
+        section8Pics: [
+          '/pics/1.jpg',
+          '/pics/2.jpeg',
+          '/pics/3.jpeg',
+          '/pics/4.jpeg',
+          '/pics/5.jpg',
+          '/pics/1.jpg',
+          '/pics/2.jpeg',
+          '/pics/3.jpeg',
+          '/pics/4.jpeg',
+          '/pics/5.jpg'
+        ],
+        swiperOption: {
+          spaceBetween: 2,
+          slidesPerView: 5,
+          loop: true,
+          breakpoints: {
+            
+          }
+        }
+      }
+    },
+
+    methods: {
+      getEditedPurpleText(text, index) {
+        let html = this.$t(text).split(' ');
+        if (html[index])
+          html[index] = '<span class="text-purple">' + html[index] + '</span>';
         return html.join(' ');
       }
     }
