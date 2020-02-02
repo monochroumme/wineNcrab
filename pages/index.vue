@@ -2,7 +2,6 @@
   <div class="main-page">
     <section class="main-page-welcome">
       <img class="main-page-welcome-bg" src="~/static/pics/H68A4312.jpg">
-      <img class="main-page-welcome-logo" src="~/static/svg/logo.svg">
       <div class="main-page-welcome-text-area">
         <div class="main-page-welcome-text-bg"><span>{{ $t('main-page.welcome.title') }}</span></div>
         <div class="main-page-welcome-text-bg"><span v-html="getEditedPurpleText('main-page.welcome.subtitle', 0)"></span></div>
@@ -13,7 +12,7 @@
       <div class="main-page-section-1-inner-wrapper">
         <div class="main-page-section-1-inner">
           <p>
-            {{ $t('main-page.section.1.text') }}
+            {{ $t('main-page.section.1') }}
           </p>
           <img src="~/static/pics/Wine_crab_wide.jpg">
         </div>
@@ -69,7 +68,7 @@
     <section class="main-page-section-5">
       <h3 class="main-page-section-5-title" v-html="getEditedPurpleText('main-page.section.5.title', 1)"></h3>
       <div class="main-page-section-5-top">
-        <div class="main-page-section-5-top-right">
+        <div class="main-page-section-5-top-left">
           <div class="main-page-section-5-download-link">
             <a :href="$t('main-page.section.5.download.link')" target="_blank">{{ $t('main-page.section.5.download.text') }}</a>
           </div>
@@ -77,7 +76,9 @@
             <p>{{ $t('main-page.section.5.text.top') }}</p>
           </div>
         </div>
-        <div class="main-page-section-5-top-left"></div>
+        <div class="main-page-section-5-top-right">
+          <img src="~/static/pics/09.jpg">
+        </div>
       </div>
       <div class="main-page-section-5-bottom-text-wrapper">
         <p>{{ $t('main-page.section.5.text.bottom') }}</p>
@@ -119,18 +120,17 @@
         </div>
       </div>
     </section>
-    <section-9 />
-    <section class="main-page-section-10">
-      <div class="main-page-section-10-top">
-        <h3 class="main-page-section-10-title">{{ $t('main-page.section.10.title') }}</h3>
-        <div class="main-page-section-10-top-gray-area"></div>
+    <section class="main-page-section-9">
+      <div class="main-page-section-9-top">
+        <h3 class="main-page-section-9-title">{{ $t('main-page.section.9.title') }}</h3>
+        <div class="main-page-section-9-top-gray-area"></div>
       </div>
-      <div class="main-page-section-10-bottom">
-        <div class="main-page-section-10-left main-page-section-10-address-area">
-          <span v-html="$t('main-page.section.10.text.left')"></span>
+      <div class="main-page-section-9-bottom">
+        <div class="main-page-section-9-left main-page-section-9-address-area">
+          <span v-html="$t('main-page.section.9.text.left')"></span>
         </div>
-        <div class="main-page-section-10-address-area">
-          <span v-html="$t('main-page.section.10.text.right')"></span>
+        <div class="main-page-section-9-address-area">
+          <span v-html="$t('main-page.section.9.text.right')"></span>
         </div>
       </div>
     </section>
@@ -139,13 +139,8 @@
 
 <script>
   import Vue from 'vue';
-  import Section9 from '~/components/Section9';
 
   export default {
-    components: {
-      'section-9': Section9
-    },
-
     beforeMount () {
       if (process.browser) {
         require('swiper/dist/css/swiper.css');
