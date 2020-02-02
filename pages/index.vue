@@ -68,6 +68,9 @@
     <section class="main-page-section-5">
       <h3 class="main-page-section-5-title" v-html="getEditedPurpleText('main-page.section.5.title', 1)"></h3>
       <div class="main-page-section-5-top">
+        <div class="main-page-section-5-download-link main-page-section-5-download-link-top">
+          <a :href="$t('main-page.section.5.download.link')" target="_blank">{{ $t('main-page.section.5.download.text') }}</a>
+        </div>
         <div class="main-page-section-5-top-left">
           <div class="main-page-section-5-download-link">
             <a :href="$t('main-page.section.5.download.link')" target="_blank">{{ $t('main-page.section.5.download.text') }}</a>
@@ -168,7 +171,18 @@
           slidesPerView: 5,
           loop: true,
           breakpoints: {
-            
+            900: {
+              slidesPerView: 4
+            },
+            700: {
+              slidesPerView: 3
+            },
+            500: {
+              slidesPerView: 2
+            },
+            400: {
+              slidesPerView: 1
+            }
           }
         }
       }
