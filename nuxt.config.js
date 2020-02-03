@@ -15,8 +15,7 @@ export default {
     ]
   },
   router: {
-    base: '/',
-    middleware: 'i18n'
+    base: '/'
   },
   /*
   ** Customize the progress-bar color
@@ -32,7 +31,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/i18n.js'
+    '~/plugins/components'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -43,6 +42,23 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    [
+      'nuxt-i18n',
+      {
+          strategy: 'no_prefix',
+          seo: true,
+          locales: [
+              { code: 'ru', iso: 'ru-RU', file: 'ru.json' },
+              { code: 'cn', iso: 'cn-CN', file: 'cn.json' }
+          ],
+          defaultLocale: 'ru',
+          vueI18n: {
+              fallbackLocale: 'ru'
+          },
+          lazy: true,
+          langDir: 'locales/'
+      }
+    ],
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt'
   ],

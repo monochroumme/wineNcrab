@@ -9,7 +9,7 @@
 		</div>
 		<div class="footer-bar">
 			<img class="footer-bar-logo" src="~/static/svg/logo-footer.svg" alt="WINE & CRAB">
-			<button class="change-language" @click="$i18n.locale == 'ru' ? $i18n.locale = 'cn' : $i18n.locale = 'ru'">
+			<button class="change-language" @click="$i18n.locale == 'ru' ? $router.push(switchLocalePath('cn')) : $router.push(switchLocalePath('ru'))">
       			<img src="~/static/svg/change-language-dark.svg" :alt="$t('change-language')">
         	</button>
 		</div>
