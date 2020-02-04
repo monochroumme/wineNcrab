@@ -45,7 +45,7 @@ export default {
     [
       'nuxt-i18n',
       {
-          strategy: 'no_prefix',
+          strategy: 'prefix_except_default',
           seo: true,
           locales: [
               { code: 'ru', iso: 'ru-RU', file: 'ru.json' },
